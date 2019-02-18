@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script src="source/echarts.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="source/chart/jinan.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="echarts_map" style="width: 1000px;height: 1000px;">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+			var data=[
+			  
+			]  
+			  function map(cityname){
+			    var chart = echarts.init(document.getElementById('echarts_map'),'shine');
+			    var option = {  
+			        // 题目
+					backgroundColor: '#1b1b1b',
+					color: ['gold','aqua','lime'],
+			        title:{
+			            text: "济南市地图",
+			            x:'10',
+			            y:'20',
+			            textStyle:{
+			              fontSize:16,
+			              fontWeight:'bold',
+						  color: '#fff'
+			            },
+						show: true
+			        },
+			        // 鼠标经过的悬浮块
+			        /*tooltip: {  
+			            trigger: 'item',  
+			            formatter: '{b}<br/>{c} (个)'
+			        }, */ 
+			        // 指示图
+			        visualMap: {
+			                min: 0,  
+			                max: 2000,  
+			                right:"20px", //组件离容器右侧的距离,'20%'
+			                bottom:"20px",
+			                calculable: true,    
+		/*	                inRange: {
+			                    color: ['#00B050','#FFFF00','#FF0000']
+			                	color: ['#FCF900','#E09501']
+			                },*/
+							show: false
+			        },
+					
+			        series:[  
+			            {  
+			                name:'济南各地市',  
+			                type:'map',//type必须声明为 map 说明该图标为echarts 中map类型  
+			                map:'济南', //这里需要特别注意。如果是中国地图，map值为china，如果为各省市则为中文  
+			                zoom: 1.2,        
+			                itemStyle:{
+			                      normal: {         // 普通状态下的样式
+			                          areaColor: "#FFFCD1",
+			                          borderColor: 'rgba(0,0,0,0)',
+			                          label:{show:true}
+			                      },
+			                      emphasis: {         // 高亮状态下的样式
+			                          areaColor: '#fca400',
+			                          label:{show:true}
+			                      }
+			                },
+							data:[],
+							markPoint : {
+									symbol:'circle',
+									symbolSize : function (v){
+											return 10 + v/10
+									},
+									effect : {
+											show: true,
+											shadowBlur : 0
+						
+									},
+									itemStyle:{
+											normal:{
+												label:{show:true},
+												color: '#fff',
+												borderColor: '#000'
+											},
+											emphasis: {
+													label:{position:'top'}
+											}
+									},
+									data : [
+											{name:'市中区',coord:[0,15]},
+											{name:'商河县',coord:[113.8953,22.901]},
+											{name:'槐荫区',coord:[118.7073,37.5513]},
+											{name:'济阳县',coord:[113.4229,22.478]},
+											{name:'长清区',coord:[111.4783,36.1615]},
+											{name:'历下区',coord:[124.541,40.4242]}
+											
+									]
+							},
+							geoCoord: {
+									'商河县': [121.4648,31.2891],
+									'济阳县': [113.8953,22.901],
+									'章丘区': [118.7073,37.5513],
+									'天桥区': [113.4229,22.478],
+									'槐荫区': [111.4783,36.1615],
+									'历下区': [118.3118,35.2936],
+									'历城区': [124.541,40.4242],
+									'市中区': [119.5642,28.1854],
+									'长清区': [87.9236,43.5883],
+									'平阴县': [112.8955,23.1097]
+							}
+			            }	
+			        ]
+			    };                       
+			    chart.setOption(option);
+			  }
+				map("济南");
+	</script>
+</html>
